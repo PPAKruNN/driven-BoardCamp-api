@@ -1,10 +1,11 @@
-import { Express } from "express";
+import Express from "express";
+import gamesRouter from "./routers/games.router.js";
 
 const app = Express();
 const port = process.env.PORT || 5000;
 
-app.listen(port);
 
-app.use(Express.cors());
 app.use(Express.json());
+app.use(gamesRouter);
 
+app.listen(port);
