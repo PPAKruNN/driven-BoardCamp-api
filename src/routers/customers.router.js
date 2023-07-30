@@ -11,7 +11,7 @@ const customersRouter = Router();
 customersRouter.get("/customers", getCustomers);
 customersRouter.get("/customers/:id", getCustomerById);
 customersRouter.post("/customers", validateSchema(customerSchema), postCustomer);
-customersRouter.put("/customers", validateSchema(customerSchema), putCustomer);
+customersRouter.put("/customers/:id", validateSchema(customerSchema), putCustomer);
 
 
 export default customersRouter;
