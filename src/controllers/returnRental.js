@@ -17,11 +17,13 @@ export default async function(req, res) {
         let diff = dayjs().diff(dayjs(rental.rentDate), "days") - rental.daysRented;
         if(diff < 0) diff = 0;
 
+        const gamePrice = await db.query(`SELECT "pricePerDay" FROM games WHERE id = $1`, [rental.gameId])
+
         await db.query(`
         UPDATE rentals
            SET "returnDate" = $1, "delayFee" = $2
          WHERE id = $3`, 
-         [ new Date().toUTCString(), diff * rental.originalPrice, id ]);
+         [ new Date().toUTCString(), diff * gamePrice.rows[0].pricePerDay, id ]);
 
         return res.sendStatus(200); 
 
