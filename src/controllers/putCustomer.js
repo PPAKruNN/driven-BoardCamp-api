@@ -8,7 +8,7 @@ export default async function(req,res) {
         const search = await db.query("SELECT * FROM customers WHERE id = $1", [id]);
         if(search.rowCount === 0) return res.sendStatus(404); 
 
-        const result = await db.query("SELECT * FROM customers WHERE cpf = $1", [cpf]);
+        const result = await db.query("SELECT * FROM customers WHERE cpf = $1 AND NOT id = $2", [cpf, id]);
         if(result.rowCount !== 0) return res.sendStatus(409);
 
         await db.query("UPDATE customers SET name=$1, phone=$2, cpf=$3, birthday=$4 WHERE id = $5", 
