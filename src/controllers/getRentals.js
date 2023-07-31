@@ -4,7 +4,7 @@ export default async function(req, res) {
 
     try {
         const search = await db.query(`
-        SELECT id, "customerId", "gameId", TO_CHAR(rentals."rentDate", 'YYYY-MM-DD') as "rentDate", "daysRented", "returnDate", "originalPrice", "delayFee",  customers.name AS "customerName", games.name AS "gameName"
+        SELECT rentals.id as id, "customerId", "gameId", TO_CHAR(rentals."rentDate", 'YYYY-MM-DD') as "rentDate", "daysRented", "returnDate", "originalPrice", "delayFee",  customers.name AS "customerName", games.name AS "gameName"
           FROM rentals 
           JOIN customers 
             ON rentals."customerId" = customers.id 
@@ -33,6 +33,7 @@ export default async function(req, res) {
 
         return res.send(response);
     } catch (error) {
+        console.log(error);
         res.sendStatus(500); 
     }
 }
