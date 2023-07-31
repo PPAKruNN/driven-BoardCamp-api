@@ -23,7 +23,7 @@ export default async function(req, res) {
          WHERE id = $3`, 
          [ new Date().toUTCString(), diff * rental.originalPrice, id ]);
 
-        return res.sendStatus(201); 
+        return res.sendStatus(200); 
 
     } catch (error) {
         console.log(error);
