@@ -11,7 +11,7 @@ export default async function(req, res) {
 
         await db.query(`DELETE FROM rentals WHERE id = $1`, [id]);
 
-        return res.sendStatus(201); 
+        return res.sendStatus(200); 
 
     } catch (error) {
         return res.sendStatus(500); 
