@@ -4,7 +4,7 @@ export default async function(req, res) {
 
     try {
         const search = await db.query(`
-        SELECT "customerId", "gameId", TO_CHAR(rentals."rentDate", 'YYYY-MM-DD') as "rentDate", "daysRented", "returnDate", "originalPrice", "delayFee",  customers.name AS "customerName", games.name AS "gameName"
+        SELECT id, "customerId", "gameId", TO_CHAR(rentals."rentDate", 'YYYY-MM-DD') as "rentDate", "daysRented", "returnDate", "originalPrice", "delayFee",  customers.name AS "customerName", games.name AS "gameName"
           FROM rentals 
           JOIN customers 
             ON rentals."customerId" = customers.id 
